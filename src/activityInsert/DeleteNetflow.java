@@ -1,5 +1,6 @@
 package activityInsert;
 
+import common.Config;
 import tableModel.BaseModel;
 
 import java.io.IOException;
@@ -14,11 +15,9 @@ import java.util.List;
  * Created by yangyun on 2017/6/5.
  */
 public class DeleteNetflow {
-    public static int KEEPALIVETIME=21;//保留3个星期的数据
-
     /**
      * 获取当天的时间yyyy-MM-dd
-     * @return
+     * @return 时间
      */
     public Date getTimeStampOfToday(){
         Date today=new Date(System.currentTimeMillis());
@@ -40,7 +39,7 @@ public class DeleteNetflow {
 
         int days= (int) ((today.getTime()-tableNameDate.getTime())/(1000*24*60*60));
 
-        if(days>=KEEPALIVETIME)
+        if(days>= Config.KeepAliveTime)
             return true;
         else
             return false;
